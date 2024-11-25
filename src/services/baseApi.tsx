@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const getAccessToken = () => {
+    console.log(import.meta.env.VITE_APP_API_URI);
     return localStorage.getItem('serviceToken') || '';
 };
 export const baseQuery = fetchBaseQuery({
