@@ -1,5 +1,5 @@
-export interface DashboardResponse{
-    totalEmployee:number;
-    totalJobseeker:number;
-    dayWiseEmployerRegistration:{count:number, day:string}[]
+export interface DashboardResponse {
+    totalEmployee: number;
+    totalJobSeeker: number;
+    dayWiseEmployerRegistration: { count: number; day: string }[];
 }
