@@ -22,11 +22,13 @@ import { ThemeMode } from 'types/config';
 
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
+import { useDashboardDataQuery } from 'services/dashboardApi';
+import useChartData from 'hooks/useChartData';
 
 const status = [
     {
-        value: 'today',
-        label: 'Today'
+        value: 'week',
+        label: 'This Week'
     },
     {
         value: 'month',
@@ -48,7 +50,8 @@ const TotalGrowthBarChart = ({ isLoading }: TotalGrowthBarChartProps) => {
     const [value, setValue] = React.useState('today');
     const theme = useTheme();
     const { mode } = useConfig();
-
+    const { data: dashboardData } = useDashboardDataQuery();
+    const { data } = useChartData();
     const { primary } = theme.palette.text;
     const darkLight = theme.palette.dark.light;
     const divider = theme.palette.divider;
@@ -59,6 +62,18 @@ const TotalGrowthBarChart = ({ isLoading }: TotalGrowthBarChartProps) => {
     const secondaryMain = theme.palette.secondary.main;
     const secondaryLight = theme.palette.secondary.light;
 
+    console.log(data, 'dash');
+    const categories = data.map((item: any) => {
+        return item.name;
+    });
+    const employerValues = data.map((item: any) => item.count);
+    const xaxis = {
+        type: 'category' as 'category',
+        categories
+    };
+
+    chartData.options = { ...chartData.options, xaxis: xaxis };
+    chartData.series = [{ name: 'New Employers', data: employerValues }];
     React.useEffect(() => {
         const newChartData = {
             ...chartData.options,
@@ -71,7 +86,11 @@ const TotalGrowthBarChart = ({ isLoading }: TotalGrowthBarChartProps) => {
                 }
             },
             yaxis: {
+                min: 0, // Set the minimum value for the y-axis
+                max: 10, // Set the maximum value for the y-axis
+                tickAmount: 5,
                 labels: {
+                    formatter: (value: any) => Math.round(value),
                     style: {
                         colors: [primary]
                     }

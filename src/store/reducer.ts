@@ -15,6 +15,7 @@ import userReducer from './slices/user';
 import cartReducer from './slices/cart';
 import kanbanReducer from './slices/kanban';
 import { countryApi } from 'services/countryApi';
+import { dashboardApi } from 'services/dashboardApi';
 
 // ==============================|| COMBINE REDUCER ||============================== //
 
@@ -36,7 +37,9 @@ const reducer = combineReducers({
     calendar: calendarReducer,
     mail: mailReducer,
     user: userReducer,
-    [countryApi.reducerPath]: countryApi.reducer
+    [countryApi.reducerPath]: countryApi.reducer,
+
+    [dashboardApi.reducerPath]: dashboardApi.reducer
 });
 
 export default reducer;

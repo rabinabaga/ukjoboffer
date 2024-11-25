@@ -18,6 +18,7 @@ import { CalendarStateProps } from './calendar';
 import { MailStateProps } from './mail';
 import { UserStateProps } from './user';
 import { SnackbarProps } from './snackbar';
+// import { JobsStateProps } from './job';
 
 export type ArrangementOrder = 'asc' | 'desc' | undefined;
 
@@ -53,13 +54,13 @@ export type OverrideIcon =
     | FunctionComponent<any>
     | any;
 
-export interface EnhancedTableHeadProps<T> extends TableCellProps {
+export interface EnhancedTableHeadProps extends TableCellProps {
     onSelectAllClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
     order: ArrangementOrder;
-    orderBy: string | symbol | number;
+    orderBy?: string;
     numSelected: number;
     rowCount: number;
-    onRequestSort: <T>(e: React.SyntheticEvent, p: keyof T) => void;
+    onRequestSort: (e: React.SyntheticEvent, p: string) => void;
 }
 
 export interface EnhancedTableToolbarProps {
@@ -119,6 +120,7 @@ export interface DefaultRootStateProps {
     calendar: CalendarStateProps;
     mail: MailStateProps;
     user: UserStateProps;
+    // job: JobsStateProps;
 }
 
 export interface ColorProps {

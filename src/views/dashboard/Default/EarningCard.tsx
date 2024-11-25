@@ -24,6 +24,7 @@ import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 
 // types
 import { ThemeMode } from 'types/config';
+import useChartData from 'hooks/useChartData';
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
@@ -39,6 +40,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
     const handleClick = (event: React.SyntheticEvent) => {
         setAnchorEl(event.currentTarget);
     };
+    const {dashboardData} = useChartData();
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -155,7 +157,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                                 <Grid container alignItems="center">
                                     <Grid item>
                                         <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                            $500.00
+                                            {dashboardData?.totalEmployee}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -180,7 +182,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                                         color: theme.palette.mode === ThemeMode.DARK ? 'text.secondary' : 'secondary.200'
                                     }}
                                 >
-                                    Total Earning
+                                    Total Employers
                                 </Typography>
                             </Grid>
                         </Grid>

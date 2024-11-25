@@ -71,6 +71,7 @@ const EnhancedTableToolbar = ({ numSelected }: EnhancedTableToolbarProps) => (
 
 interface ProEnhancedTableHeadProps extends EnhancedTableHeadProps {
     selected: string[];
+    numSelected: number;
 }
 
 // ==============================|| LEAD - TABLE HEADER ||============================== //

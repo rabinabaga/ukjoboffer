@@ -10,7 +10,6 @@ import { loader as productsLoader, productLoader } from 'api/products';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
-const DashboardAnalytics = Loadable(lazy(() => import('views/dashboard/Analytics')));
 
 // application crm routing
 
@@ -379,10 +378,6 @@ const MainRoutes = {
         {
             path: '/dashboard/default',
             element: <DashboardDefault />
-        },
-        {
-            path: '/dashboard/analytics',
-            element: <DashboardAnalytics />
         }
     ]
 };

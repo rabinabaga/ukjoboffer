@@ -24,6 +24,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 // types
 import { ThemeMode } from 'types/config';
+import useChartData from 'hooks/useChartData';
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
@@ -38,7 +39,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
     const handleChangeTime = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, newValue: boolean) => {
         setTimeValue(newValue);
     };
-
+    const { data, dashboardData } = useChartData();
     return (
         <>
             {isLoading ? (
@@ -136,7 +137,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
                                                     </Typography>
                                                 ) : (
                                                     <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                        $961
+                                                        {dashboardData?.totalJobseeker}
                                                     </Typography>
                                                 )}
                                             </Grid>
@@ -160,7 +161,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
                                                         color: theme.palette.mode === ThemeMode.DARK ? 'text.secondary' : 'primary.200'
                                                     }}
                                                 >
-                                                    Total Order
+                                                    Total Jobseekers
                                                 </Typography>
                                             </Grid>
                                         </Grid>

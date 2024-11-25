@@ -7,13 +7,16 @@ import { persistStore } from 'redux-persist';
 // project imports
 import rootReducer from './reducer';
 import { countryApi } from 'services/countryApi';
+import { dashboardApi } from 'services/dashboardApi';
 
 // ==============================|| REDUX - MAIN STORE ||============================== //
 
 const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({ serializableCheck: false, immutableCheck: false }).concat(countryApi.middleware) as any
+        getDefaultMiddleware({ serializableCheck: false, immutableCheck: false })
+            .concat(countryApi.middleware)
+            .concat(dashboardApi.middleware)
 });
 
 const persister = persistStore(store);
