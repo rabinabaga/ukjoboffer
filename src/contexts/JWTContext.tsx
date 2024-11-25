@@ -15,7 +15,6 @@ import axios from 'utils/axios';
 // types
 import { KeyedObject } from 'types';
 import { InitialLoginContextProps, JWTContextType } from 'types/auth';
-import { useNavigate } from 'react-router';
 
 const chance = new Chance();
 
@@ -52,13 +51,17 @@ const JWTContext = createContext<JWTContextType | null>(null);
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(accountReducer, initialState);
+
     useEffect(() => {
         const init = async () => {
             try {
                 const serviceToken = window.localStorage.getItem('serviceToken');
                 if (serviceToken && verifyToken(serviceToken)) {
+                    console.log('s-token', serviceToken);
+                    console.log('verify', verifyToken(serviceToken));
+
                     setSession(serviceToken);
-                    const response = await axios.post('/user/superadmin/login');
+                    const response = await axios.get('/user/superadmin/login');
                     const { superAdmin } = response.data;
                     dispatch({
                         type: LOGIN,
@@ -95,6 +98,8 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                 user: superAdmin
             }
         });
+
+        // navigate('/dashboard/default');
     };
 
     const register = async (email: string, password: string, firstName: string, lastName: string) => {
@@ -126,8 +131,14 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     };
 
     const logout = () => {
+        localStorage.removeItem('serviceToken');
+
         setSession(null);
         dispatch({ type: LOGOUT });
+
+        console.log('Logout is clicked hhhhhhhh');
+
+        // navigate('/login');
     };
 
     const resetPassword = async (email: string) => {};

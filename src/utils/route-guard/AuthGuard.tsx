@@ -13,13 +13,19 @@ import { useEffect } from 'react';
  */
 const AuthGuard = ({ children }: GuardProps) => {
     const { isLoggedIn } = useAuth();
+
     const navigate = useNavigate();
 
+    const serviceToken = localStorage.getItem('serviceToken');
+    console.log('kkkkkkkkkkkkkkkkkkkk', isLoggedIn);
     useEffect(() => {
-        if (!isLoggedIn) {
-            navigate('login', { replace: true });
+        if (!isLoggedIn && !serviceToken) {
+            navigate('/', { replace: true });
         }
-    }, [isLoggedIn, navigate]);
+        //  else if (isLoggedIn || serviceToken) {
+        //     navigate('/dashboard/default');
+        // }
+    }, [isLoggedIn, navigate, serviceToken]);
 
     return children;
 };
