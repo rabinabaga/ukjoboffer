@@ -59,13 +59,6 @@ const EnhancedTableToolbar = ({ numSelected }: EnhancedTableToolbarProps) => (
             </Typography>
         )}
         <Box sx={{ flexGrow: 1 }} />
-        {/* {numSelected > 0 && (
-            <Tooltip title="Delete">
-                <IconButton size="large">
-                    <DeleteIcon fontSize="small" />
-                </IconButton>
-            </Tooltip>
-        )} */}
     </Toolbar>
 );
 
@@ -76,11 +69,7 @@ interface ProEnhancedTableHeadProps extends EnhancedTableHeadProps {
 
 // ==============================|| LEAD - TABLE HEADER ||============================== //
 
-function LeadTableHeader({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ProEnhancedTableHeadProps) {
-    const createSortHandler = (property: string) => (event: React.SyntheticEvent<Element, Event>) => {
-        onRequestSort(event, property);
-    };
-
+function LeadTableHeader({ onSelectAllClick, order, orderBy, numSelected, rowCount, selected }: ProEnhancedTableHeadProps) {
     return (
         <TableHead>
             <TableRow>
@@ -108,18 +97,7 @@ function LeadTableHeader({ onSelectAllClick, order, orderBy, numSelected, rowCou
                             padding={headCell.disablePadding ? 'none' : 'normal'}
                             sortDirection={orderBy === headCell.id ? order : false}
                         >
-                            <TableSortLabel
-                                active={orderBy === headCell.id}
-                                direction={orderBy === headCell.id ? order : 'asc'}
-                                onClick={createSortHandler(headCell.id)}
-                            >
-                                {headCell.label}
-                                {orderBy === headCell.id ? (
-                                    <Typography component="span" sx={{ display: 'none' }}>
-                                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                    </Typography>
-                                ) : null}
-                            </TableSortLabel>
+                            {headCell.label}
                         </TableCell>
                     ))}
                 {numSelected <= 0 && <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}></TableCell>}

@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -40,7 +41,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
     const handleClick = (event: React.SyntheticEvent) => {
         setAnchorEl(event.currentTarget);
     };
-    const {dashboardData} = useChartData();
+    const { dashboardData } = useChartData();
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -101,9 +102,7 @@ const EarningCard = ({ isLoading }: EarningCardProps) => {
                                                 bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'secondary.800',
                                                 mt: 1
                                             }}
-                                        >
-                                            <img src={EarningIcon} alt="Notification" />
-                                        </Avatar>
+                                        ></Avatar>
                                     </Grid>
                                     <Grid item>
                                         <Avatar

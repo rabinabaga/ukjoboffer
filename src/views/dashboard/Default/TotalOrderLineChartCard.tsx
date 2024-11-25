@@ -100,9 +100,7 @@ const TotalOrderLineChartCard = ({ isLoading }: TotalOrderLineChartCardProps) =>
                                                 color: '#fff',
                                                 mt: 1
                                             }}
-                                        >
-                                            <LocalMallOutlinedIcon fontSize="inherit" />
-                                        </Avatar>
+                                        ></Avatar>
                                     </Grid>
                                     <Grid item>
                                         <Button

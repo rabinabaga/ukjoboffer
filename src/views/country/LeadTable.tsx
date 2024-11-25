@@ -113,7 +113,6 @@ const LeadTable = ({ rows, refetch }: LeadTableProps) => {
                         order={order}
                         orderBy={orderBy}
                         onSelectAllClick={handleSelectAllClick}
-                        onRequestSort={handleRequestSort}
                         rowCount={rows.length}
                         selected={selected}
                     />

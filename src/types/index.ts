@@ -60,7 +60,6 @@ export interface EnhancedTableHeadProps extends TableCellProps {
     orderBy?: string;
     numSelected: number;
     rowCount: number;
-    onRequestSort: (e: React.SyntheticEvent, p: string) => void;
 }
 
 export interface EnhancedTableToolbarProps {

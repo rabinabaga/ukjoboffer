@@ -23,7 +23,6 @@ import { KeyedObject } from 'types';
 import { Country } from 'types/country';
 
 interface LeadFilterProps {
-    handleToggleDrawer: () => void;
     rows: Country[];
     setRows: (rows: Country[]) => void;
     refetch: () => void;
@@ -31,7 +30,7 @@ interface LeadFilterProps {
 
 // ==============================|| LEAD - SEARCH FILTER ||============================== //
 
-const Filter = ({ handleToggleDrawer, rows, setRows, refetch }: LeadFilterProps) => {
+const Filter = ({ rows, setRows, refetch }: LeadFilterProps) => {
     const [openAddDialog, setOpenAddDialog] = React.useState(false);
     const [search, setSearch] = React.useState<string>('');
 
@@ -117,7 +116,7 @@ const Filter = ({ handleToggleDrawer, rows, setRows, refetch }: LeadFilterProps)
                     </Tooltip>
                 </Stack>
             </Stack>
-            <AddLeadDialog {...{ open: openAddDialog, handleToggleAddDialog, refetchLeads:refetch }} />
+            <AddLeadDialog {...{ open: openAddDialog, handleToggleAddDialog, refetchLeads: refetch }} />
         </>
     );
 };
