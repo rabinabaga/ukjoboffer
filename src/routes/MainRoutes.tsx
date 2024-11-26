@@ -7,6 +7,7 @@ import Loadable from 'ui-component/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 import { loader as productsLoader, productLoader } from 'api/products';
+import CountryDetailView from 'views/country/DetailView';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -116,6 +117,10 @@ const MainRoutes = {
         {
             path: '/settings/country',
             element: <CountryApp />
+        },
+        {
+            path: '/country/:id',
+            element: <CountryDetailView />
         },
         {
             path: '/components/text-field',

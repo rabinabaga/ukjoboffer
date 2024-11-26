@@ -14,8 +14,8 @@ import { Chance } from 'chance';
 
 // project imports
 import AddLeadDialog from './AddLeadDialog';
-import NewMessage from './NewMessage';
 import useConfig from 'hooks/useConfig';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 // assets
 import DeleteOutlineOutlined from '@mui/icons-material/DeleteOutlineOutlined';
@@ -27,6 +27,7 @@ import { Country } from 'types/country';
 import { useDeleteCountryMutation } from 'services/countryApi';
 import { Avatar, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { limitDescription } from 'utils/limitString';
+import { Link } from 'react-router-dom';
 
 interface Props {
     row: Country;
@@ -100,8 +101,22 @@ const LeadTableBody = ({ row, selected, handleClick, refetchLeads, countNumber }
                 <TableCell sx={{ cursor: 'pointer' }}>
                     <Typography variant="h5">{limitDescription(row?.description, 30)}</Typography>
                 </TableCell>
-                <TableCell sx={{ pr: 3 }}>
-                    <Stack direction="row" spacing={1.25} justifyContent="center">
+                <TableCell>
+                    <Stack direction="row" spacing={1.25} justifyContent="left">
+                        <IconButton
+                            color="info"
+                            size="small"
+                            component={Link}
+                            to={`/country/${row._id}`}
+                            sx={{
+                                borderRadius: `${borderRadius}px`,
+                                p: 1.25,
+                                border: '1px solid',
+                                borderColor: 'divider'
+                            }}
+                        >
+                            <VisibilityIcon />
+                        </IconButton>
                         <IconButton
                             color="primary"
                             size="small"
@@ -133,7 +148,6 @@ const LeadTableBody = ({ row, selected, handleClick, refetchLeads, countNumber }
             </TableRow>
 
             <AddLeadDialog {...{ open: openAddDialog, handleToggleAddDialog, row, refetchLeads }} />
-            <NewMessage {...{ open: openMsgDialog, handleToggleMsgDialog }} />
 
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>{'Confirm Deletion'}</DialogTitle>

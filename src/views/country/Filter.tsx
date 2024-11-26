@@ -87,23 +87,12 @@ const Filter = ({ rows, setRows, refetch }: LeadFilterProps) => {
                     onChange={handleSearch}
                 />
                 <Stack direction="row" alignItems="center" justifyContent={{ xs: 'center' }} spacing={1.25}>
-                    {/* <Tooltip title="Copy">
-                        <IconButton size="large">
-                            <FileCopyIcon />
-                        </IconButton>
-                    </Tooltip> */}
                     <Tooltip title="Print">
                         <IconButton size="large">
                             <PrintIcon />
                         </IconButton>
                     </Tooltip>
-                    {/* <Tooltip title="Filter">
-                        <IconButton size="large" onClick={handleToggleDrawer}>
-                            <FilterListIcon />
-                        </IconButton>
-                    </Tooltip> */}
 
-                    {/* lead add & dialog */}
                     <Tooltip title="Add New Country">
                         <Fab
                             color="primary"

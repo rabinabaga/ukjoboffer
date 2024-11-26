@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import CardContent from '@mui/material/CardContent';
@@ -70,7 +70,7 @@ const AddLeadDialogBody = ({ row, refetchLeads }: AddLeadDialogBodyProps) => {
                     addCountry(formData)
                         .unwrap()
                         .then((response) => {
-                            //     console.log('Success:', response);
+                            console.log('Success:', response);
                             enqueueSnackbar('Item created successfully!', { variant: 'success' });
                             refetchLeads();
                         })
@@ -107,6 +107,13 @@ const AddLeadDialogBody = ({ row, refetchLeads }: AddLeadDialogBodyProps) => {
         }
     };
 
+    useEffect(() => {
+        if (row?.image) {
+            setImagePreview(row?.image);
+        } else {
+            setImagePreview(null);
+        }
+    }, [row?.image]);
     return (
         <CardContent sx={{ px: 2, py: 3 }}>
             <Grid container spacing={3}>

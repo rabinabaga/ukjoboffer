@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { Country } from 'types/country';
 import { baseQuery } from './baseApi';
+import { KeyedObject } from 'types';
 
 export interface Countrys {
     _id: string;
@@ -17,7 +18,7 @@ export const countryApi = createApi({
         countries: builder.query<Country, void>({
             query: () => '/job/settings/country'
         }),
-        country: builder.query<Country[], string>({
+        country: builder.query<KeyedObject, string>({
             query: (id) => `/job/settings/country/${id}`
         }),
         addCountry: builder.mutation<void, FormData>({
